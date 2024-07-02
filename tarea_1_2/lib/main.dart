@@ -13,14 +13,17 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    const divider = Expanded(
-              child: Divider(
-                height: 5,
-                color: Color.fromARGB(90, 158, 158, 158),
-                thickness: 1,
+    const divider = Padding(
+      padding: EdgeInsets.all(10),
+      child: Expanded(
+                child: Divider(
+                  height: 5,
+                  color: Color.fromARGB(90, 158, 158, 158),
+                  thickness: 1,
+                ),
               ),
-            );
-    String mensaje = 'Solo tú puedes ver la configuración. También puedes revisar la configuración de Maps, la Búsqueda o cualquier servicio de Google que uses con frecuencia. Google protege la privacidad y la seguridad de tus datos.';
+    );
+    String mensaje = 'Solo tú puedes ver la configuración. También puedes revisar la configuración de Maps, la Búsqueda o cualquier servicio de Google que uses con frecuencia. Google protege la privacidad y la seguridad de tus datos. ';
 
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -29,11 +32,11 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: Colors.blue,
           title: const Text('Cuenta de google'),
         ),
-        body: Expanded(
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
+        body:   Expanded(
+          child: ListView(
+              //mainAxisSize: MainAxisSize.min,
+              //mainAxisAlignment: MainAxisAlignment.start,
+              //crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Tile(title:'Tu cuenta está protegida',
                 description: "La verificación de seguridad revisó tu cuenta y no encontró acciones recomendadas.",
@@ -75,8 +78,8 @@ class _MyAppState extends State<MyApp> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 3),
-                              child: Text("", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                              padding: EdgeInsets.symmetric(vertical: 0),
+                              child: Text("", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10),),
                             ),
                             RichText(text: TextSpan(text: mensaje, style: const TextStyle(fontSize: 15, color: Colors.grey),
                             children: const [
@@ -134,14 +137,20 @@ class ActionRow extends StatelessWidget {
         children: [
           Expanded(
             flex: 1,
-            child: Icon(titleIcon, color: Colors.grey, size: 30,),
+            child:Icon(titleIcon, color: Colors.grey, size: 30,),
             ),
-            Expanded(flex: 8, child: Text(title,style: const TextStyle(fontSize: 15),
+            Expanded(flex: 8, child: Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(title,style: const TextStyle(fontSize: 15,), 
+              ),
             ),
             ),
             Expanded(
               flex: 1,
-              child: Icon(actionIcon, color: Colors.grey, size: 30,),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Icon(actionIcon, color: Colors.grey, size: 20,),
+              ),
               ),
             ],
       ),
@@ -175,7 +184,7 @@ class Tile extends StatelessWidget {
                 ),
                 Text(description,style: const TextStyle(fontSize: 13, color: Colors.grey),),
                 Container(
-                  margin: const EdgeInsets.only(top: 10),
+                  margin: const EdgeInsets.only(top: 20),
                   child: Text(linkTitle, style: const TextStyle(color: Colors.blue),),)
               ],
             ),
