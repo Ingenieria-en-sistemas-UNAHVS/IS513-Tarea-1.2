@@ -20,7 +20,8 @@ class _MyAppState extends State<MyApp> {
                 thickness: 1,
               ),
             );
-    const String mensaje = 'Solo tú puedes ver la configuración. También puedes revisar la configuración de Maps, la Búsqueda o cualquier servicio de Google que uses con frecuencia. Google protege la privacidad y la seguridad de tus datos.';
+    String mensaje = 'Solo tú puedes ver la configuración. También puedes revisar la configuración de Maps, la Búsqueda o cualquier servicio de Google que uses con frecuencia. Google protege la privacidad y la seguridad de tus datos.';
+
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -28,23 +29,23 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: Colors.blue,
           title: const Text('Cuenta de google'),
         ),
-        body: const Expanded(
+        body: Expanded(
           child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Tile(title:'Tu cuenta está protegida',
+                const Tile(title:'Tu cuenta está protegida',
                 description: "La verificación de seguridad revisó tu cuenta y no encontró acciones recomendadas.",
                 linkTitle: 'Ver detalles'),
                 divider,
             
-                Tile(title: 'Verificación de privacidad',
+                const Tile(title: 'Verificación de privacidad',
                 description: 'Elige la configuración de privacidad indicada para ti con esta guía paso a paso.',
                 linkTitle: 'Realiza la verificación de privacidad',),
                 divider,
                 
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -57,14 +58,14 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
 
-                ActionRow(titleIcon: Icons.search, title: 'Buscar en la Cuenta de Google'),
-                ActionRow(titleIcon: Icons.question_mark_rounded, title: 'Ver las opciones de ayuda'),
-                ActionRow(titleIcon: Icons.mode_comment_outlined, title: 'Enviar comentarios'), 
+                const ActionRow(titleIcon: Icons.search, title: 'Buscar en la Cuenta de Google'),
+                const ActionRow(titleIcon: Icons.question_mark_rounded, title: 'Ver las opciones de ayuda'),
+                const ActionRow(titleIcon: Icons.mode_comment_outlined, title: 'Enviar comentarios'), 
                 divider,
 
                 //Tile(description: mensaje,),
                 Padding(
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -73,18 +74,24 @@ class _MyAppState extends State<MyApp> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.symmetric(vertical: 3),
                               child: Text("", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
                             ),
-                            Text(mensaje,style: TextStyle(fontSize: 13, color: Colors.grey),),
-                            Padding(
+                            RichText(text: TextSpan(text: mensaje, style: const TextStyle(fontSize: 15, color: Colors.grey),
+                            children: const [
+                              TextSpan(text: 'Más información', style: TextStyle(color: Colors.blue),),
+                              WidgetSpan(child: Icon(Icons.question_mark_sharp, size: 12, color: Colors.blue,),alignment:PlaceholderAlignment.middle)
+                            ]
+                            ),
+                            ),
+                            const Padding(
                               padding: EdgeInsets.only(top: 10),
                               child: Text("", style: TextStyle(color: Colors.blue),),)
                           ],
                         ),
                         ),
-                      Expanded(
+                      const Expanded(
                         flex: 2,
                         child: Padding(
                           padding: EdgeInsets.symmetric(vertical: 20),
