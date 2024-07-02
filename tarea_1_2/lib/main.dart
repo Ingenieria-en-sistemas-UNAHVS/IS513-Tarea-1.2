@@ -14,7 +14,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     const divider = Padding(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(5),
       child: Expanded(
                 child: Divider(
                   height: 5,
@@ -66,51 +66,58 @@ class _MyAppState extends State<MyApp> {
                 const ActionRow(titleIcon: Icons.mode_comment_outlined, title: 'Enviar comentarios'), 
                 divider,
 
-                //Tile(description: mensaje,),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                        flex: 8,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 0),
-                              child: Text("", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10),),
-                            ),
-                            RichText(text: TextSpan(text: mensaje, style: const TextStyle(fontSize: 15, color: Colors.grey),
-                            children: const [
-                              TextSpan(text: 'Más información', style: TextStyle(color: Colors.blue),),
-                              WidgetSpan(child: Icon(Icons.question_mark_sharp, size: 12, color: Colors.blue,),alignment:PlaceholderAlignment.middle)
-                            ]
-                            ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 10),
-                              child: Text("", style: TextStyle(color: Colors.blue),),)
-                          ],
-                        ),
-                        ),
-                      const Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 20),
-                            child: Column(
-                              children: [
-                                FlutterLogo(size: 50,),
-                              ],
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
+                //Bottom message
+                Footer(mensaje: mensaje),
               ],
             ),
         ),
+      ),
+    );
+  }
+}
+
+class Footer extends StatelessWidget {
+  const Footer({
+    super.key,
+    required this.mensaje,
+  });
+
+  final String mensaje;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Expanded(
+            flex: 8,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RichText(text: TextSpan(text: mensaje, style: const TextStyle(fontSize: 15, color: Colors.grey),
+                children: const [
+                  TextSpan(text: 'Más información', style: TextStyle(color: Colors.blue,),),
+                  WidgetSpan(child: Icon(Icons.question_mark_sharp, size: 12, color: Colors.blue,),alignment:PlaceholderAlignment.middle)
+                ]
+                ),
+                ),
+              ],
+            ),
+            ),
+          const Expanded(
+            flex: 2,
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 20),
+                child: Column(
+                  children: [
+                    FlutterLogo(size: 50,),
+                  ],
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }
